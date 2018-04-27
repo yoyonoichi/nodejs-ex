@@ -38,16 +38,15 @@ var db = null,
 var initDb = function(callback) { console.log('initDb', mongoURL);
   if (mongoURL == null) return;
 
-  var mongodb = require('mongodb'); console.log(mongodb);
+  var mongodb = require('mongodb');
   if (mongodb == null) return;
-console.log('mongodb required');
                                  
   mongodb.connect(mongoURL, function(err, conn) {
-    if (err) {
+    if (err) { console.log('error', err);
       callback(err);
       return;
     }
-
+console.log(conn);
     db = conn;
     dbDetails.databaseName = db.databaseName;
     dbDetails.url = mongoURLLabel;
