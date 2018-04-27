@@ -35,12 +35,13 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 var db = null,
     dbDetails = new Object();
 
-var initDb = function(callback) { console.log('initDb', mongoURL, process.env);
+var initDb = function(callback) { console.log('initDb', mongoURL);
   if (mongoURL == null) return;
 
-  var mongodb = require('mongodb');
+  var mongodb = require('mongodb'); console.log(mongodb);
   if (mongodb == null) return;
-
+console.log('mongodb required');
+                                 
   mongodb.connect(mongoURL, function(err, conn) {
     if (err) {
       callback(err);
