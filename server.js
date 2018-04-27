@@ -15,7 +15,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
 
 if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
   var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
-      mongoHost = '127.0.0.1',//process.env[mongoServiceName + '_SERVICE_HOST'],
+      mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
       mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
       mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
       mongoPassword = process.env[mongoServiceName + '_PASSWORD']
@@ -42,7 +42,7 @@ var initDb = function(callback) {
   if (mongodb == null) return;
                            
   mongodb.connect(mongoURL, function(err, conn) {
-    if (err) { console.log('error', err.message, mongoURL);
+    if (err) { //console.log('error', err.message, mongoURL);
       callback(err);
       return;
     }
