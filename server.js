@@ -40,7 +40,9 @@ var initDb = function(callback) {
 
   var mongodb = require('mongodb');
   if (mongodb == null) return;
-                                 
+                           
+  mongoURL = 'mongodb://userX7X:H6CVaJuLXEewdnfx@mongodb-yoichi-node-project.7e14.starter-us-west-2.openshiftapps.com:27017/yoichidb';
+  
   mongodb.connect(mongoURL, function(err, conn) {
     if (err) { console.log('error', err, mongoURL);
       callback(err);
