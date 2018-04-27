@@ -7,12 +7,12 @@ Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
-console.log(process.env);
+//console.log(process.env);
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
     mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
     mongoURLLabel = "";
-
+console.log(mongoURL, process.env.DATABASE_SERVICE_NAME);
 if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) { console.log('build mongourl');
   var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
       mongoHost = 'mongodb-yoichi-node-project.7e14.starter-us-west-2.openshiftapps.com',//process.env[mongoServiceName + '_SERVICE_HOST'],
@@ -42,7 +42,7 @@ var initDb = function(callback) {
   if (mongodb == null) return;
                            
   mongodb.connect(mongoURL, function(err, conn) {
-    if (err) { console.log('error', err.MongoError, mongoURL);
+    if (err) { console.log('error', err.message, mongoURL);
       callback(err);
       return;
     }
