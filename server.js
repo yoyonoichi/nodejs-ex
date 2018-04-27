@@ -15,7 +15,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
 
 if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
   var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
-      mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
+      mongoHost = 'mongodb-yoichi-node-project.7e14.starter-us-west-2.openshiftapps.com',//process.env[mongoServiceName + '_SERVICE_HOST'],
       mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
       mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
       mongoPassword = process.env[mongoServiceName + '_PASSWORD']
@@ -41,8 +41,6 @@ var initDb = function(callback) {
   var mongodb = require('mongodb');
   if (mongodb == null) return;
                            
-  mongoURL = 'mongodb://userX7X:H6CVaJuLXEewdnfx@mongodb-yoichi-node-project.7e14.starter-us-west-2.openshiftapps.com:27017/yoichidb';
-  
   mongodb.connect(mongoURL, function(err, conn) {
     if (err) { console.log('error', err, mongoURL);
       callback(err);
