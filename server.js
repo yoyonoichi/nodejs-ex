@@ -35,7 +35,7 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 var db = null,
     dbDetails = new Object();
 
-var initDb = function(callback) {
+var initDb = function(callback) { console.log('initDb', mongoURL, process.env);
   if (mongoURL == null) return;
 
   var mongodb = require('mongodb');
@@ -56,10 +56,10 @@ var initDb = function(callback) {
   });
 };
 
-app.get('/', function (req, res) { console.log('page load');
+app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
-  if (!db) { console.log('db fail');
+  if (!db) {
     initDb(function(err){});
   }
   if (db) {
