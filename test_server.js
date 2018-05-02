@@ -92,6 +92,14 @@ app.get('/', function(req, res) {
   }
 });
 
+app.get('/pagecount', function (req, res) {
+  res.send('page count dammy');
+});
+
+initDb(function(err) {
+  console.log('MongoDB problem: ' + err);
+});
+
 app.listen(port, ip);
 console.log('%s: Node server started on %s:%d ...', Date(Date.now()), ip, port);
 
